@@ -26,7 +26,11 @@ interface IBody {
   color: string;
 }
 
-export const createCar = async (body: ICar): Promise<ICar> =>
+interface ICreateCar {
+  id: number;
+}
+
+export const createCar = async (body: ICreateCar): Promise<ICar> =>
   (
     await fetch(garage, {
       method: 'POST',
@@ -75,8 +79,8 @@ const getSortOrder = (sort: string, order: string) => {
 interface IGetWinners {
   page?: number;
   limit?: number;
-  sort?: string;
-  order?: string;
+  sort: string;
+  order: string;
 }
 
 interface IWinner {
@@ -107,7 +111,13 @@ export const getWinnerStatus = async (id: number) => (await fetch(`${winners}/${
 export const deleteWinner = async (id: number) =>
   (await fetch(`${winners}/${id}`, { method: 'DELETE' })).json() as Promise<string>;
 
-export const createWinner = async (body: IWinner): Promise<IWinner> =>
+interface ICreateWinner {
+  id: number;
+  wins?: number;
+  time?: number;
+}
+
+export const createWinner = async (body: ICreateWinner): Promise<IWinner> =>
   (
     await fetch(winners, {
       method: 'POST',
@@ -118,7 +128,7 @@ export const createWinner = async (body: IWinner): Promise<IWinner> =>
     })
   ).json();
 
-export const updateWinner = async (body: IWinner, id: number): Promise<IWinner> =>
+export const updateWinner = async (body: IWinner | null, id: number): Promise<IWinner> =>
   (
     await fetch(`${winners}/${id}`, {
       method: 'PUT',

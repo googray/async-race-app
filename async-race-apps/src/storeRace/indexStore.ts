@@ -1,5 +1,5 @@
 import { getCars, getWinners } from '../apiRace/indexApi';
-import { ICar } from '../apiRace/indexApi';
+import { ICar, IWinner } from '../apiRace/indexApi';
 
 interface IGetCars {
   items: ICar[];
@@ -10,7 +10,12 @@ const { items: cars, count: carsCount }: IGetCars = (async () => {
   await getCars(1);
 })();
 
-const { items: winners, count: winnersCount } = (async () => {
+interface IGetWinners {
+  items: IWinner[];
+  count: number;
+}
+
+const { items: winners, count: winnersCount }: IGetWinners = (async () => {
   await getWinners({ page: 1 });
 })();
 

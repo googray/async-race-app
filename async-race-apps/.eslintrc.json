@@ -21,10 +21,12 @@
     "no-debugger": "off",
     "no-console": 0,
     "class-methods-use-this": "off",
-    // "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-explicit-any": "error",
     "linebreak-style": 0,
     "import/export": 0,
     "implicit-arrow-linebreak": "off",
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["car"] }],
+    "object-curly-newline": "off",
     "max-len": [
       "error",
       {

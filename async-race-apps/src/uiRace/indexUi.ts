@@ -1,8 +1,8 @@
-import { getCar, getCars, createCar, deleteCar, updateCar, startEngine, stopEngine, saveWinner, getWinners, deleteWinner, drive } from "../apiRace/indexApi"
+import { getCar, getCars, createCar, deleteCar, updateCar, startEngine, stopEngine, saveWinner, getWinners, deleteWinner, drive, ICar } from "../apiRace/indexApi"
 import store from '../storeRace/indexStore';
 import { animation, getDistanceBetweenElements, race, generateRandomCars } from '../utilsRace/indexUtils';
 
-let selectedCar = null;
+let selectedCar:ICar|null = null;
 
 const renderCarImage = (color: string): string => `
 <?xml version="1.0"?>
@@ -147,16 +147,16 @@ export const updateStateGarage = async () => {
 const MAX_ITEMS_ON_PAGE = 10;
 //any
 export const updateStateWinners = async () => {
-  const { items, count } = await getWinners({ page: store.winnersPage, sort: store.sortBy, order: store.sortOrder });
+  const { items, count } = await getWinners({ page: store.winnerPage, sort: store.sortBy, order: store.sortOrder });
   store.winners = items;
   store.winnersCount = count;
   
-  if (store.winnersPage * MAX_ITEMS_ON_PAGE < store.winnersCount) {
+  if (store.winnerPage * MAX_ITEMS_ON_PAGE < store.winnersCount) {
     (<HTMLButtonElement>document.getElementById('next')).disabled = false;
   } else {
     (<HTMLButtonElement>document.getElementById('next')).disabled = true;
   }
-  if (store.winnersPage > 1) {
+  if (store.winnerPage > 1) {
     (<HTMLButtonElement>document.getElementById('prev')).disabled = false;
   } else {
     (<HTMLButtonElement>document.getElementById('prev')).disabled = true;
@@ -219,7 +219,7 @@ export const listen = () => {
       stopDriving(id)
     }
     if (target.classList.contains('select-button')) {
-      selectedCar = await getCar(target.id.split('select-button')[1]);
+      selectedCar = await getCar(+target.id.split('select-button')[1]);
       (<HTMLInputElement>document.getElementById('update-name')).value = selectedCar.name;
       (<HTMLInputElement>document.getElementById('update-color')).value = selectedCar.color;
       (<HTMLInputElement>document.getElementById('update-name')).disabled = false;

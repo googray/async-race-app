@@ -1,4 +1,5 @@
 import store from '../storeRace/indexStore';
+import { ICar } from '../apiRace/indexApi';
 
 // interface IPositionCenter {
 //   left: number;
@@ -23,7 +24,7 @@ export function getDistanceBetweenElements(a: HTMLElement, b: HTMLElement) {
 }
 
 interface IState {
-  id: number;
+  id?: number;
 }
 
 // interface ICar {
@@ -31,9 +32,10 @@ interface IState {
 //   color: string;
 //   id: number;
 // }
-export function animation(car: HTMLElement, distance: number, animationTime: number): string {
+export function animation(car: HTMLElement, distance: number, animationTime: number) {
   let start: number | null = null;
-  const state = <IState>{};
+  ///
+  const state: IState = {};
 
   function step(timestamp: number) {
     if (!start) start = timestamp;
@@ -51,13 +53,13 @@ export function animation(car: HTMLElement, distance: number, animationTime: num
   return state;
 }
 
-export const raceAll: any = async (promises: [], ids: []) => {
+export const raceAll = async (promises: [], ids: number[]) => {
   const { success, id, time } = await Promise.race(promises);
 
   if (!success) {
     const failedIndex = ids.findIndex((i: number) => i === id);
     const restPromises: number[] = [...promises.slice(0, failedIndex), ...ids.slice(failedIndex + 1, ids.length)];
-    const restIds: number[] = [...ids.slice(0, failedIndex)];
+    const restIds = [...ids.slice(0, failedIndex)];
     return raceAll(restPromises, restIds);
   }
   return {
