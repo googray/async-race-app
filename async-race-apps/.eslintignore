@@ -1,0 +1,7 @@
+/node_modules
+/.vscode
+/.git
+package.json
+webpack.config.js
+tsconfig.json
+eslintrc.json

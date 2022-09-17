@@ -1,0 +1,170 @@
+body {
+  background: #000;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.garage {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 100px;
+}
+.table {
+  margin-bottom: 100px;
+}
+.table td,
+.table th {
+  font-size: 20px;
+  padding: 8px;
+}
+.table th {
+  background: rgb(19, 126, 240);
+}
+.table-button {
+  cursor: pointer;
+  user-select: none;
+}
+.table-button.asc::after {
+  content: ' &uarr;';
+}
+.table-button.desc::after {
+  content: ' &darr;';
+}
+.garage .car {
+  width: 100px;
+}
+.race-controls {
+  margin-bottom: 50px;
+}
+.menu {
+  margin-bottom: 50px;
+}
+.icon {
+  cursor: pointer;
+  background: none;
+  border: 2px solid;
+  border-radius: 8px;
+  font-size: 25px;
+  color: #fff;
+  padding: 0 6px 3px 6px;
+}
+.icon:hover {
+  color: rgb(107, 176, 250);
+}
+.icon:disabled {
+  color: rgb(80, 85, 80);
+  cursor: auto;
+}
+.icon.enabling {
+  color: rgb(107, 176, 250);
+}
+.start-engine-button {
+  color: green;
+}
+.stop-engine-button {
+  color: rgb(255, 45, 45);
+}
+.control-panel {
+  padding: 10px 20px 10px 0;
+}
+.car {
+  padding: 30px 0 0;
+}
+.road {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 4px dashed whitesmoke;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.lounch-pad {
+  display: flex;
+}
+.flag {
+  padding: 30px 0 0;
+  color: crimson;
+  font-size: 80px;
+  margin-top: -80px;
+  transform: skewX(10deg) translateY(30px) translateX(-180px);
+}
+.button {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  background: rgb(224, 230, 240);
+  border-radius: 4px;
+  border: none;
+  border-bottom: 6px solid rgb(19, 126, 240);
+  padding: 4px;
+  width: 100px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+.button.primary {
+  background: rgb(222, 250, 170);
+  border-bottom: 6px solid rgb(119, 180, 10);
+}
+.button:active {
+  transform: translateY(4px);
+  border-bottom: 2px solid rgb(19, 126, 240);
+}
+.button:disabled {
+  background: rgb(129, 130, 140);
+  border-bottom: 6px solid rgb(29, 50, 100);
+}
+.generator {
+  margin-bottom: 50px;
+}
+.button.generator-button {
+  width: 160px;
+}
+.form {
+  height: 50px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 370px;
+}
+.input {
+  border: 0;
+  border-radius: 4px;
+  background: rgb(224, 230, 240);
+  font-size: 14px;
+  padding: 4px;
+  height: 20px;
+  width: 200px;
+}
+.input:disabled {
+  background: rgb(129, 130, 140);
+}
+.color {
+  border: 0;
+  border-radius: 4px;
+  background: rgb(224, 230, 240);
+  height: 26px;
+}
+.color:disabled {
+  background: rgb(129, 130, 140);
+}
+.car-name {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  padding-left: 20px;
+  color: rgb(240, 220, 21);
+}
+.message {
+  top: 50%;
+  left: calc(50% - 250px);
+  text-align: center;
+  display: none;
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  color: #fff;
+  width: 500px;
+  color: #fff;
+  text-shadow: 0 -1px 4px whitesmoke, 0 -2px 5px yellow, 0 -5px 10px orange, 0 -10px 20px blue;
+}
+.message.visible {
+  display: block;
+}
