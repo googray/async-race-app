@@ -26,11 +26,11 @@ interface IBody {
   color: string;
 }
 
-interface ICreateCar {
-  id: number;
-}
+// interface ICreateCar {
+//   id: number | null;
+// }
 
-export const createCar = async (body: ICreateCar): Promise<ICar> =>
+export const createCar = async (body: number): Promise<ICar> =>
   (
     await fetch(garage, {
       method: 'POST',
@@ -76,30 +76,32 @@ const getSortOrder = (sort: string, order: string) => {
   return '';
 };
 
-interface IGetWinners {
-  page?: number;
-  limit?: number;
-  sort: string;
-  order: string;
-}
+// interface IGetWinners {
+//   page?: number;
+//   limit?: number;
+//   sort: string;
+//   order: string;
+// }
 
-interface IWinner {
+export interface IWinner {
   id: number;
   wins: number;
   time: number;
 }
 
-export const getWinners = async ({ page, limit = 10, sort, order }: IGetWinners) => {
+export const getWinners = async (page: number, sort: string, order: string, limit = 10) => {
   const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSortOrder(sort, order)}`);
   const items = (await response.json()) as Promise<IWinner[]>;
 
   return {
-    items: (await Promise.all(
-      items.map(async (winner: ICar) => ({
+    items: await Promise.all(
+      (
+        await items
+      ).map(async (winner: IWinner) => ({
         ...winner,
         car: await createCar(winner.id),
       }))
-    )) as Promise<IWinner[]>,
+    ),
     count: response.headers.get('X-Total-Count'),
   };
 };

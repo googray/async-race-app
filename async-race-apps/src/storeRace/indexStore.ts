@@ -1,5 +1,4 @@
-import { getCars, getWinners } from '../apiRace/indexApi';
-import { ICar, IWinner } from '../apiRace/indexApi';
+import { getCars, getWinners, ICar, IWinner } from '../apiRace/indexApi';
 
 interface IGetCars {
   items: ICar[];

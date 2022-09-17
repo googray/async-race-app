@@ -27,6 +27,7 @@
     "implicit-arrow-linebreak": "off",
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["car"] }],
     "object-curly-newline": "off",
+    "comma-dangle": ["error", "only-multiline"],
     "max-len": [
       "error",
       {

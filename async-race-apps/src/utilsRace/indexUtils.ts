@@ -72,7 +72,7 @@ export const race = async (action: any) => {
   const promises = store.cars.map((id: number) => action(id));
   const winner = await raceAll(
     promises,
-    store.cars.map((car) => car.id)
+    store.cars.map((car) => car.id),
   );
   return winner;
 };
